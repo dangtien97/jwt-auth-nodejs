@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-playground",
+  "version": "0.0.0",
+  "description": "A playground nodejs dev",
+  "main": "server.js",
+  "repository": "",
+  "author": "tiennd97",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "~3.2.4",
+    "mongoose": "^5.3.6"
+  }
+}
