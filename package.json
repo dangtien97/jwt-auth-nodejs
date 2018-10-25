@@ -5,6 +5,9 @@
   "main": "server.js",
   "repository": "",
   "author": "tiennd97",
+  "engines": {
+    "node": "11.0.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -16,7 +19,4 @@
     "mongoose-auto-increment": "^5.0.1"
   },
   "license": "MIT",
-  "engines": {
-    "node": "11.0.0"
-  },
 }
