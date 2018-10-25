@@ -1,4 +1,5 @@
 const express = require("express");
+const Auth = require("./auth/AuthController");
 const server = express();
 const PORT = process.env.PORT || 5000;
 
@@ -10,8 +11,14 @@ mongoose.connect(mlabURI, { useNewUrlParser: true }, (error) => {
     if(error){
         console.log("Error: " + error);
     } else {
-        console.log("Connected successfully to server");
+        console.log("Connected successfully to mlab database");
     }
 });
 
 server.listen(PORT, () => console.log(`RESTFULAPIs Server on ${PORT}!`));
+
+server.get('/api', (req,res) => {
+  res.status(200).send('Api works');
+});
+
+server.use('/api/auth', Auth);
