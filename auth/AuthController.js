@@ -16,6 +16,12 @@ router.use(bodyParser.urlencoded(
 ));
 router.use(bodyParser.json());
 
+router.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 router.post('/register', (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
