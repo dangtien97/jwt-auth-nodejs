@@ -105,7 +105,7 @@ router.post('/login', (req, res) => {
             id: user._id
           },
           config.secretKey, {
-            expiresIn: 300
+            expiresIn: 10
           });
           let refreshToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
           refreshTokens[refreshToken] = user._id;
@@ -137,6 +137,7 @@ router.post('/refresh-token', (req, res) => {
   } else {
     res.status(401).send({
       message: "Unauthorized",
+      data: refreshTokens,
     });
   }
 });
