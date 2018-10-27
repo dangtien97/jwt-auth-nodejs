@@ -10,8 +10,8 @@ function verifyToken(req, res, next) {
   } else {
     jwt.verify(token, config.secretKey, (err, decoded) => {
       if(err) {
-        res.status(500).send({
-          message: "Internal server error",
+        res.status(401).send({
+          message: "Token is invalid",
           error: err
         });
       } else {
