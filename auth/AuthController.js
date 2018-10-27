@@ -104,7 +104,7 @@ router.post('/login', (req, res) => {
             id: user._id
           },
           config.secretKey, {
-            expiresIn: 2
+            expiresIn: 86400
           });
           res.status(200).send({
             auth: true,
