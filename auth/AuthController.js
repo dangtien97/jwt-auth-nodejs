@@ -1,11 +1,10 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
 const User = require('../user/User');
-;
 const VerifyToken = require("./VerifyToken");
 
 const router = express();
@@ -23,6 +22,8 @@ router.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'x-access-token');
   next();
 });
+
+var refreshTokens = {};
 
 router.post('/register', (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -104,16 +105,40 @@ router.post('/login', (req, res) => {
             id: user._id
           },
           config.secretKey, {
-            expiresIn: 86400
+            expiresIn: 300
           });
+          let refreshToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          refreshTokens[refreshToken] = user._id;
           res.status(200).send({
             auth: true,
-            token: token
+            token: token,
+            refreshToken: refreshToken,
           });
         }
       }
     }
   });
+});
+
+router.post('/refresh-token', (req, res) => {
+  const userId = req.body.userId;
+  const refreshToken = req.body.refreshToken;
+  if((refreshToken in refreshTokens) && (refreshTokens[refreshToken] == userId)) {
+    const token = jwt.sign(
+      {
+        id: userId
+      },
+        config.secretKey, {
+        expiresIn: 300
+      });
+      res.status(200).send({
+        token: token,
+      });
+  } else {
+    res.status(401).send({
+      message: "Unauthorized",
+    });
+  }
 });
 
 router.get('/logout', (req, res) => {
