@@ -103,17 +103,20 @@ router.post('/login', (req, res) => {
           {
             id: user._id
           },
-          config.secretKey, {
-            expiresIn: 10
-          });
+          config.secretKey, 
+          {
+            expiresIn: 60
+          }
+          );
           let refreshToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
           Token.create({
             refreshToken: refreshToken,
             userId: user._id,
-          }, (err, token) => {
+          }, (err, resToken) => {
             if(err) {
               res.status(500).send({
                 message: 'Internal server error',
+                error: err,
               });
             }
           });
@@ -134,13 +137,13 @@ router.post('/refresh-token', (req, res) => {
   Token.findOne({
     userId: userId,
     refreshToken: refreshToken,
-  }, (err, res) => {
+  }, (err, resToken) => {
     if(err) {
       res.status(500).send({
         message: "Internal server error",
       });
     } else {
-      if(!res) {
+      if(!resToken) {
         res.status(401).send({
           message: "Unauthorized",
         });
