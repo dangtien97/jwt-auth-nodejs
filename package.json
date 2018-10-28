@@ -6,7 +6,8 @@
   "repository": "",
   "author": "tiennd97",
   "engines": {
-    "node": "11.0.0"
+    "node": "11.0.0",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
