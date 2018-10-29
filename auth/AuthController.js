@@ -17,11 +17,11 @@ router.use(bodyParser.urlencoded(
 router.use(bodyParser.json());
 
 router.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Origin', 'https://jwt-login-app.herokuapp.com');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, content-type, Accept, x-access-token, Authorization");
-  return next();
+  next();
 });
 
 router.post('/register', (req, res) => {
