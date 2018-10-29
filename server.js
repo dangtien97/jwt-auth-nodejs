@@ -15,10 +15,7 @@ mongoose.connect(mlabURI, { useNewUrlParser: true }, (error) => {
     }
 });
 
-server.listen(PORT, () => console.log(`RESTFULAPIs Server on ${PORT}!`));
-
-server.get('/api', (req,res) => {
-  res.status(200).send('Api works');
-});
-
-server.use('/api/auth', Auth);
+server
+    .get('/api', (req,res) => {res.status(200).send('Api works')})
+    .use('/api/auth', Auth)
+    .listen(PORT, () => console.log(`RESTFULAPIs Server on ${PORT}!`));
