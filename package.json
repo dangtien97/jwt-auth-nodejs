@@ -6,7 +6,7 @@
   "repository": "",
   "author": "tiennd97",
   "engines": {
-    "node": "11.0.0",
+    "node": "8.9.1",
     "npm": "6.4.1"
   },
   "dependencies": {
