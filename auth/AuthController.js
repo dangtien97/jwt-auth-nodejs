@@ -17,7 +17,7 @@ router.use(bodyParser.urlencoded(
 router.use(bodyParser.json());
 
 router.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, content-type, Accept, x-access-token, Authorization");
