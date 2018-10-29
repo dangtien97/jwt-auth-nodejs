@@ -105,7 +105,7 @@ router.post('/login', (req, res) => {
           },
           config.secretKey, 
           {
-            expiresIn: 60
+            expiresIn: 86400
           }
           );
           let refreshToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
