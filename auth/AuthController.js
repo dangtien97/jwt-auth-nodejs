@@ -21,7 +21,7 @@ router.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, content-type, Accept, x-access-token, Authorization");
-  next();
+  return next();
 });
 
 router.post('/register', (req, res) => {
