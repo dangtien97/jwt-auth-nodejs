@@ -4,4 +4,5 @@ npm-debug.log
 /*.env
 yarn.lock
 package-lock.json
+.c9
 ./no-commit/*
